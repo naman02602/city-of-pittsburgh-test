@@ -1,0 +1,49 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# PyCharm specific files
+.idea/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
+*.egg-info/
+
+# Environment variables
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Test coverage reports
+htmlcov/
+*.coverage
+coverage.xml
+
+# Build artifacts
+build/
+dist/
+*.egg
+*.egg-info/
+.eggs/
+
+# Data and generated files
+*.sqlite3
+*.db
+*.bak
+
+# Miscellaneous
+*.swp

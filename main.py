@@ -59,6 +59,7 @@ def preprocess_data(app_data):
 
     app_data.to_csv("application_data_processed.csv", index=False, header=True)
     inv_data.to_csv("invalid_data.csv", index=False, header=True)
+    logging.info(f"Preprocessed and Invalid Data written")
 
 
 # API endpoint URL
@@ -68,9 +69,9 @@ FILE_NAME = "application_data.csv"
 
 def main():
     # Fetch and save the data on csv
-    # fetch_data_from_api(API_URL, file_name="application_data.csv")
-    # application_in = pd.read_csv(FILE_NAME)
-    # preprocess_data(application_in)
+    fetch_data_from_api(API_URL, file_name="application_data.csv")
+    application_in = pd.read_csv(FILE_NAME)
+    preprocess_data(application_in)
     application_proc = pd.read_csv("application_data_processed.csv")
 
     # # Question 1: How does applicant age (in years) and party designation (party) relate to overall vote
@@ -87,6 +88,7 @@ def main():
     vote_by_mail_stats = vote_by_mail_stats.sort_values(by=['party', 'count'], ascending=[False, False])
 
     vote_by_mail_stats.to_csv('1_AgePartyAnalysis.csv', index=False, header=True)
+    logging.info(f"Question 1 solved")
 
     ## Question 2: What was the median latency from when each legislative district (legislative) issued their
     # application and when the ballot was returned?
@@ -105,6 +107,8 @@ def main():
     median_latency = median_latency.sort_values(by='median_latency_days', ascending=False)
     median_latency.to_csv('2_MedianLatencyLegislative.csv', index=False, header=True)
 
+    logging.info(f"Question 2 solved")
+
     ## Question 3: What is the congressional district (congressional) that has the highest frequency of ballot requests?
     # Group by congressional district and count the occurrences
     congressional_counts = application_proc.groupby('congressional').size().reset_index(name='request_count')\
@@ -113,6 +117,8 @@ def main():
     # Get the district with the highest frequency
     top_congressional_district = congressional_counts.iloc[5]
     top_congressional_district.to_csv('3_TopCongressionalDistrict.csv', index=False, header=True)
+
+    logging.info(f"Question 3 solved")
 
     ## Question 4: Create a visualization demonstrating the republican and democratic application counts in each county.
     # Filter for relevant parties
@@ -131,6 +137,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig('4_PartyCounty.png', dpi=300)
+    logging.info(f"Question 4 solved")
 
 
 if __name__ == '__main__':
