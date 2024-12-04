@@ -47,3 +47,5 @@ dist/
 
 # Miscellaneous
 *.swp
+data/
+solution/
